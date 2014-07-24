@@ -1,0 +1,11 @@
+{
+  "name": "mass-javascript-regex-tester",
+  "version": "0.0.1",
+  "dependencies": {
+    "colors": "^0.6.2",
+    "jsonfile": "^1.2.0",
+    "q": "0.9.6",
+    "regex": "^0.1.1",
+    "underscore": "1.5.1"
+  }
+}

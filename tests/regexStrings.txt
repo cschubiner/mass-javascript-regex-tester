@@ -1,0 +1,1 @@
+([e|E]-?mail|[p|P]assword|[u|U]sername|[u|U]ser\s[n|N]ame)((\\n)?\w*\b\s(\\n)?){1,6}(wrong|incorrect|invalid|not\scorrect|not\svalid)
