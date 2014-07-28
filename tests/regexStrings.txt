@@ -1,3 +1,3 @@
-([e|E]-?mail|[p|P]assword|[u|U]sername|[u|U]ser\s[n|N]ame)((\\n)?\w*\b\s(\\n)?){1,6}(wrong|incorrect|invalid|not\scorrect|not\svalid)
-([L|l]og[ -]?[i|I]n|[A|a]uthentication|[S|s]ign[- ]?[i|I]n)((\\n)?\w*\b\s(\\n)?){1,3}([f|F]ailed)
+(e-?mail|password|username|user\sname)((\\n)?\w*\b\s(\\n)?){1,6}(wrong|incorrect|invalid|not\scorrect|not\svalid)
+(Log[ -]?in|Authentication|Sign[- ]?in)((\\n)?\w*\b\s(\\n)?){1,3}(failed)
 Incorrect email or password.

@@ -26,7 +26,7 @@ function logError(str) {
 }
 
 function doesStringMatch(testString, regexStr) {
-  var regex = new RegExp(regexStr, 'g');
+  var regex = new RegExp(regexStr, 'gi');
   return regex.test(testString);
 }
 
