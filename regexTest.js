@@ -89,7 +89,7 @@ function evaluateRegexes(regexes) {
 
 function writeResultsToFile(results) {
   var resultsFile = 'results.json';
-  fs.writeFile(resultsFile, JSON.stringify(results), function (err) {
+  fs.writeFile(resultsFile, JSON.stringify(results).replace(/,/g, '\n'), function (err) {
     if (err) {
       console.log(err);
     }
