@@ -5,6 +5,9 @@ var _ = require('underscore');
 var a = console.log;
 var colors = require('colors');
 
+var LOG_FALSE_POSITIVE = true;
+var LOG_FALSE_NEGATIVE = true;
+
 colors.setTheme({
   silly: 'rainbow',
   input: 'grey',
@@ -62,17 +65,19 @@ function evaluateRegexes(regexes) {
       }
       else {
         ret.falseNegatives += 1;
-        console.log("\n------------- FALSE NEGATIVE -------------\n\t".error +
-          testString.testString +
-          '\n------------------------------------------'.error);
+        if (LOG_FALSE_NEGATIVE)
+          console.log("\n------------- FALSE NEGATIVE -------------\n\t".error +
+            testString.testString +
+            '\n------------------------------------------'.error);
       }
     }
     else {
       if (result) {
         ret.falsePositives += 1;
-        console.log("\n------------- FALSE POSITIVE -------------\n\t".error +
-          testString.testString +
-          '\n------------------------------------------'.error);
+        if (LOG_FALSE_POSITIVE)
+          console.log("\n------------- FALSE POSITIVE -------------\n\t".error +
+            testString.testString +
+            '\n------------------------------------------'.error);
       }
       else {
         ret.trueNegatives += 1;
