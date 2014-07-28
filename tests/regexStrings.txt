@@ -1,4 +1,6 @@
-\b(e-?mail|password|user\s?(name|ID)|Log[ -]?[i|o]n|credentials)\b((\\n)?\w*\b\s(\\n)?){1,6}\b(wrong|incorrect|invalid|not\scorrect|not\svalid|not\s+match)\b
+\b(e-?mail|password|user\s?(name|ID)|Log[ -]?[i|o]n|credentials)\b((\\n)?\w*\b\s(\\n)?){1,6}\b(wrong|incorrect(ly)?|invalid|(isn'?t|not)\scorrect(ly)?|(isn'?t|not)\svalid|not\s+(match|correspond))\b
 \b(Log[ -]?[i|o]n|Authentication|Sign[- ]?in)\b((\\n)?\w*\b\s(\\n)?){1,3}\b(failed)\b
-\b(wrong|incorrect|invalid|not\scorrect|not\svalid|bad)\b((\\n)?\w*\b\s(\\n)?){1,5}\b(e-?mail|password|user\s?(name|ID)|Log[ -]?[i|o]n|credentials)\b
-\b(enter|input)\b((\\n)?\w*\b\s(\\n)?){1,3}\b(valid|correct)\b((\\n)?\w*\b\s(\\n)?){1,5}\b(e-?mail|password|user\s?(name|ID)|Log[ -]?[i|o]n|credentials)\b
+\b(wrong|incorrect(ly)?|invalid|(isn'?t|not)\scorrect(ly)?|(isn'?t|not)\svalid|bad)\b((\\n)?\w*\b\s(\\n)?){1,5}\b(e-?mail|password|user\s?(name|ID)|Log[ -]?[i|o]n|credentials)\b
+\b(enter|input)\b((\\n)?\w*\b\s(\\n)?){1,3}\b(valid|correct(ly)?)\b((\\n)?\w*\b\s(\\n)?){1,5}\b(e-?mail|password|user\s?(name|ID)|Online ID|Log[ -]?[i|o]n|credentials)\b
+\b(entered|inputt?ed)\b((\\n)?\w*\b\s(\\n)?){1,4}\b(wrong|incorrect(ly)?|invalid|(isn'?t|not)\scorrect(ly)?|(isn'?t|not)\svalid|bad|not\s+(match|correspond))\b
+\b(entered|inputt?ed)\b(\s*?[^\s\\]+\s*?){1,6}\b(valid|correct(ly)?|wrong|incorrect(ly)?|invalid|(isn'?t|not)\scorrect(ly)?|(isn'?t|not)\svalid|not\s+(match|correspond))\b
