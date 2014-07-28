@@ -82,9 +82,22 @@ function evaluateRegexes(regexes) {
   return ret;
 }
 
+function writeResultsToFile(results) {
+  var resultsFile = 'results.json';
+  fs.writeFile(resultsFile, JSON.stringify(results), function (err) {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      console.log("The results were saved to " + resultsFile);
+    }
+  });
+}
+
 function runTest(regexes) {
-  testResult = evaluateRegexes(regexes);
+  var testResult = evaluateRegexes(regexes);
   a(testResult);
+  writeResultsToFile(testResult);
 }
 
 function loadAndEvaluateRegexes(fileName) {
