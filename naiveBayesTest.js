@@ -25,9 +25,16 @@ function logError(str) {
   console.log(str.error);
 }
 
-function doesStringMatch(testString, regexStr) {
-  var regex = new RegExp(regexStr, 'gi');
-  return regex.test(testString);
+function writeResultsToFile(results) {
+  var resultsFile = 'results.json';
+  fs.writeFile(resultsFile, JSON.stringify(results).replace(/,/g, '\n'), function (err) {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      console.log("The results were saved to " + resultsFile);
+    }
+  });
 }
 
 function readJSONFile(fileName, isPositive) {
@@ -39,16 +46,7 @@ function readJSONFile(fileName, isPositive) {
   });
 }
 
-function validateString(testString, regexStrings) {
-  for (var index in regexStrings) {
-    var regexStr = regexStrings[index];
-    if (doesStringMatch(testString, regexStr))
-      return true;
-  }
-  return false;
-}
-
-function evaluateRegexes(regexes) {
+function evaluateTest() {
   var ret = {
     truePositives: 0,
     trueNegatives: 0,
@@ -58,7 +56,9 @@ function evaluateRegexes(regexes) {
   };
   for (var index in testStrings) {
     var testString = testStrings[index];
-    var result = validateString(testString.testString, regexes);
+    var result = classifier.categorize(testString.testString);
+    result = result === 'pos';
+
     if (testString.isPositive) {
       if (result) {
         ret.truePositives += 1;
@@ -88,40 +88,33 @@ function evaluateRegexes(regexes) {
   return ret;
 }
 
-function writeResultsToFile(results) {
-  var resultsFile = 'results.json';
-  fs.writeFile(resultsFile, JSON.stringify(results).replace(/,/g, '\n'), function (err) {
-    if (err) {
-      console.log(err);
-    }
-    else {
-      console.log("The results were saved to " + resultsFile);
-    }
-  });
+function shuffle(array) {
+  var counter = array.length,
+    temp, index;
+  while (counter > 0) {
+    index = Math.floor(Math.random() * counter);
+    counter--;
+    temp = array[counter];
+    array[counter] = array[index];
+    array[index] = temp;
+  }
+  return array;
 }
 
-function runTest(regexes) {
-  var testResult = evaluateRegexes(regexes);
+function runTest() {
+  var testResult = evaluateTest();
   a(testResult);
   writeResultsToFile(testResult);
 }
 
-function loadAndEvaluateRegexes(fileName) {
-  var ret = [];
-  return require('readline').createInterface({
-    input: fs.createReadStream(fileName),
-    terminal: false
-  }).on('line', function (line) {
-    ret.push(line);
-  }).on('close', function () {
-    runTest(ret);
-  });
-}
+var classifier = require('bayes')();
 
 var positiveStrings = readJSONFile('./tests/positiveStrings.json', true);
 var negativeStrings = readJSONFile('./tests/negativeStrings.json', false);
-var testStrings = positiveStrings.concat(negativeStrings);
+var testStrings = shuffle(positiveStrings.concat(negativeStrings));
 
-loadAndEvaluateRegexes('./tests/regexStrings.txt');
+_.each(testStrings, function (testString) {
+  classifier.learn(testString.testString, testString.isPositive ? 'pos' : 'neg');
+});
 
-// console.log(doesStringMatch('abc', 'a'));
+runTest();

@@ -2,6 +2,7 @@
   "name": "mass-javascript-regex-tester",
   "version": "0.0.1",
   "dependencies": {
+    "bayes": "0.0.3",
     "colors": "^0.6.2",
     "jsonfile": "^1.2.0",
     "q": "0.9.6",

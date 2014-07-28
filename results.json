@@ -2,4 +2,5 @@
 "trueNegatives":125
 "falsePositives":0
 "falseNegatives":67
-"total":392}
+"total":392
+"accuracy":0.8290816326530612}
