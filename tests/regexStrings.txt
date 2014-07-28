@@ -1,3 +1,3 @@
-(e-?mail|password|username|user\sname|Log[ -]?in|credentials)((\\n)?\w*\b\s(\\n)?){1,6}(wrong|incorrect|invalid|not\scorrect|not\svalid)
-(Log[ -]?in|Authentication|Sign[- ]?in)((\\n)?\w*\b\s(\\n)?){1,3}(failed)
-(wrong|incorrect|invalid|not\scorrect|not\svalid)((\\n)?\w*\b\s(\\n)?){1,5}(e-?mail|password|username|user\sname|Log[ -]?in|credentials)
+\b(e-?mail|password|username|user\sname|Log[ -]?[i|o]n|credentials)\b((\\n)?\w*\b\s(\\n)?){1,6}\b(wrong|incorrect|invalid|not\scorrect|not\svalid)\b
+\b(Log[ -]?[i|o]n|Authentication|Sign[- ]?in)\b((\\n)?\w*\b\s(\\n)?){1,3}\b(failed)\b
+\b(wrong|incorrect|invalid|not\scorrect|not\svalid|bad)\b((\\n)?\w*\b\s(\\n)?){1,5}\b(e-?mail|password|username|user\sname|Log[ -]?[i|o]n|credentials)\b
