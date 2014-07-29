@@ -5,6 +5,7 @@
     "bayes": "0.0.3",
     "colors": "^0.6.2",
     "jsonfile": "^1.2.0",
+    "natural": "^0.1.28",
     "q": "0.9.6",
     "regex": "^0.1.1",
     "underscore": "1.5.1"

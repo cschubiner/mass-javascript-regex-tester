@@ -5,8 +5,8 @@ var _ = require('underscore');
 var a = console.log;
 var colors = require('colors');
 
-var LOG_FALSE_POSITIVE = true;
-var LOG_FALSE_NEGATIVE = true;
+var LOG_FALSE_POSITIVE = false;
+var LOG_FALSE_NEGATIVE = false;
 
 colors.setTheme({
   silly: 'rainbow',
@@ -56,7 +56,7 @@ function evaluateTest() {
   };
   for (var index in testStrings) {
     var testString = testStrings[index];
-    var result = classifier.categorize(testString.testString);
+    var result = classifier.classify(testString.testString);
     result = result === 'pos';
 
     if (testString.isPositive) {
@@ -107,14 +107,25 @@ function runTest() {
   writeResultsToFile(testResult);
 }
 
-var classifier = require('bayes')();
+var natural = require('natural');
+var classifier = new natural.BayesClassifier();
+var NGrams = natural.NGrams;
 
 var positiveStrings = readJSONFile('./tests/positiveStrings.json', true);
 var negativeStrings = readJSONFile('./tests/negativeStrings.json', false);
 var testStrings = shuffle(positiveStrings.concat(negativeStrings));
 
 _.each(testStrings, function (testString) {
-  classifier.learn(testString.testString, testString.isPositive ? 'pos' : 'neg');
+  classifier.addDocument(JSON.stringify(NGrams.bigrams(testString.testString)), testString.isPositive ?
+    'pos' :
+    'neg');
 });
+_.each(testStrings, function (testString) {
+  classifier.addDocument(testString.testString, testString.isPositive ?
+    'pos' :
+    'neg');
+});
+a('Training...');
+classifier.train();
 
 runTest();

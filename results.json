@@ -1,6 +1,6 @@
-{"truePositives":200
-"trueNegatives":125
+{"truePositives":203
+"trueNegatives":124
 "falsePositives":0
-"falseNegatives":67
+"falseNegatives":65
 "total":392
-"accuracy":0.8290816326530612}
+"accuracy":0.8341836734693877}
